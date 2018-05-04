@@ -9,11 +9,48 @@
 $(function(){
 
     $(".go-btn").on("click",function(){
-        $(this).css({
-            backgroundColor:"rgba(255,106,106,1)",
-            border:"1px solid rgba(255,106,106,1)",
-            boxShadow:"0 0 6px 7px rgba(255,106,106,0.5)"
-        })
+        // $(this).css({
+        //     backgroundColor:"rgba(255,106,106,1)",
+        //     border:"1px solid rgba(255,106,106,1)",
+        //     boxShadow:"0 0 6px 7px rgba(255,106,106,0.5)"
+        // })
+        if($(".go-input").val()){
+            // $.ajax({
+            //     url:""
+            // })
+
+            swal({
+                title:"班级通告",
+                text:"这是要密码的",
+                icon:"info",
+                content:{
+                    element:"input",
+                    attributes:{
+                        placeholder:"",
+                        type:"password"
+                    }
+                },
+                button:{
+                    text:"进班",
+                },
+                closeOnClickOutside:false,
+                closeOnEsc:true
+            });
+        }else{
+            swal({
+                title:"班级通告",
+                text:"别忘了你的大名",
+                icon:"warning",
+                button:{
+                    text:"好的",
+                    value:true,
+                    visible:true,
+                    className:"",
+                    closeModal:true
+                }
+            })
+        }
+
     })
 
 
@@ -33,15 +70,15 @@ $(function(){
 
     //控制音乐
     $(".control-audio-btn").on("click",function(){
-        var $audio = $("#bg-audio");
+        var $audio = $("#bg-audio").get(0);
         if($audio.paused){
             $audio.play();
-            $(this).css({color:"rgba(255,255,0,1)"});
+            $("#audio-icon").css({color:"rgba(54,54,54,1)"});
         } else{
             $audio.pause();
-            $(this).css({color:"rgba(255,69,0,1)"});
+            $("#audio-icon").css({color:"rgba(0,255,255,0.8)"});
         }
         $("#audio-icon").toggleClass("icon-zanting");
         $("#audio-icon").toggleClass("icon-bofang");
     });
-})()
+})
