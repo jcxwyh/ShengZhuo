@@ -29,6 +29,10 @@
             <groupId>com.ysu2013</groupId>
             <artifactId>Entity</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ysu2013</groupId>
+            <artifactId>Repository</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

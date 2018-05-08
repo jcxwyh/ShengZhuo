@@ -14,28 +14,65 @@ $(function(){
         //     border:"1px solid rgba(255,106,106,1)",
         //     boxShadow:"0 0 6px 7px rgba(255,106,106,0.5)"
         // })
-        if($(".go-input").val()){
-            // $.ajax({
-            //     url:""
-            // })
 
-            swal({
-                title:"班级通告",
-                text:"这是要密码的",
-                icon:"info",
-                content:{
-                    element:"input",
-                    attributes:{
-                        placeholder:"",
-                        type:"password"
+        var name = $(".go-input").val();
+        if(name){
+            $.ajax({
+                url:"validName",
+                data:{name:name},
+                type:"post",
+                dataType:"json",
+                success:function(result){
+                    if(result.code == "SUCCESS"){
+                        swal({
+                            title:"班级通告",
+                            text:"这是要密码的",
+                            icon:"info",
+                            content:{
+                                element:"input",
+                                attributes:{
+                                    placeholder:"",
+                                    type:"password"
+                                }
+                            },
+                            button:{
+                                text:"进班",
+                            },
+                            closeOnClickOutside:false,
+                            closeOnEsc:true,
+                            animation:"slide-from-top"
+                        });
+                    }else if(result.code == "NOSUCHCOLLEAGUE"){
+                        swal({
+                            title:"班级通告",
+                            text:"查无此人,3秒后关闭",
+                            icon:"warning",
+                            timer:3000,
+                            buttons:null,
+                            closeOnClickOutside:false,
+                            closeOnEsc:false
+                        });
+                    }else if(result.code == "PARAMETERROR"){
+                        swal({
+                            title:"班级通告",
+                            text:"不输名字就想进？年轻！",
+                            icon:"danger",
+                            buttons:null,
+                            closeOnClickOutside:false,
+                            closeOnEsc:false
+                        });
+                    }else{
+                        swal({
+                            title:"班级通告",
+                            text:"系统出错了！快联系雄二",
+                            icon:"danger",
+                            buttons:null,
+                            closeOnClickOutside:false,
+                            closeOnEsc:false
+                        });
                     }
-                },
-                button:{
-                    text:"进班",
-                },
-                closeOnClickOutside:false,
-                closeOnEsc:true
-            });
+                }
+            })
         }else{
             swal({
                 title:"班级通告",

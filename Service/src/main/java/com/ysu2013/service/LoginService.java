@@ -1,6 +1,10 @@
 package com.ysu2013.service;
 
+import com.ysu2013.repo.ColleagueRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 /**
  * @author AaronJiang
@@ -12,4 +16,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
+
+    @Autowired
+    private ColleagueRepository colleagueRepository;
+
+    public boolean validName(String name) {
+        return Objects.isNull(this.colleagueRepository.findByName(name))?false:true;
+    }
 }

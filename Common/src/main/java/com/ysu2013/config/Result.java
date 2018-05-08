@@ -19,7 +19,36 @@ public class Result<T> implements Serializable {
 
     private T data;
 
-    private enum Code{
+    public Code getCode() {
+        return code;
+    }
+
+    public void setCode(Code code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setMessage(Code code,String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public enum Code implements Serializable{
         SUCCESS(10200,"操作成功"),
         PARAMETERROR(100401,"参数错误"),
         AUTHENTICATIONERROR(10402,"无权到此一游"),
@@ -28,6 +57,7 @@ public class Result<T> implements Serializable {
         LOGINERROR(10501,"登录错误"),
         FILEUPLOADERROR(100502,"文件上传出错");
 
+        private static final long serialVersionUID = 12314L;
 
         private int code;
         private String message;
